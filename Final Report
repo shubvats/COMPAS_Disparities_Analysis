@@ -1,0 +1,218 @@
+Unveiling Disparities in COMPAS Algorithm: A Comprehensive
+Analysis of Predictive Accuracy, Bias, and Future Directions
+
+Abstract
+This research delves into a meticulous examination of the COMPAS algorithm, a widely utilized
+tool in criminal justice for predicting recidivism risk. The report comprises three interwoven
+parts, each contributing to a holistic understanding of the algorithm's functionality and
+implications. In the initial section, "Background, Models, Methodology, and Theory," the study
+unfolds the historical context and controversies surrounding COMPAS, deploying logistic
+regression and survival analysis models to elucidate the statistical underpinnings.
+Methodological intricacies are unraveled, providing a transparent view of the algorithm's
+implementation.
+The second segment, "Empirical Studies," is a deep dive into simulation analyses focused on
+disparities in decile scores concerning race, gender, and age. Through meticulous data
+preprocessing, descriptive statistics, and correlation analyses, the study unveils the nuanced
+relationships within the dataset. Logistic regression results, violent offense analyses, and
+survival analyses are presented with detailed interpretations and visual representations,
+enriching the empirical exploration.
+The third part, "Discussion," synthesizes major findings, critiques the proposed methods, and
+outlines future research directions. Logistic regression insights into demographic biases,
+survival analysis findings on temporal dynamics, and unique revelations from violent offense
+analyses are critically examined. The report concludes with a call for algorithmic fairness,
+contextual information integration, and collaboration with domain experts in future research.
+This research serves not only as a comprehensive analysis of COMPAS but as a foundation for
+ongoing discourse on improving the fairness and accuracy of predictive algorithms in criminal
+justice.
+Keywords: COMPAS algorithm, predictive accuracy, algorithmic bias, criminal justice, recidivism
+risk, logistic regression, survival analysis, demographic disparities, fairness, simulation analysis,
+violent offense, empirical studies, algorithmic transparency, ethical AI, future research
+directions.
+Background:
+The analysis is conducted on a dataset related to the COMPAS (Correctional Offender
+Management Profiling for Alternative Sanctions) system, focusing on predicting recidivism and
+assessing potential biases in the criminal justice system. The dataset includes various features
+such as age, race, gender, criminal history, and COMPAS scores.
+Statistical Models and Problems:
+The primary statistical problem addressed is the prediction of recidivism, which is whether an
+individual will reoffend within two years. Two types of datasets are analyzed: one considering
+general recidivism and another focusing on violent recidivism. The main statistical models used
+include logistic regression and Cox proportional hazards models.
+
+Logistic Regression:
+ Model:
+score_factor∼gender_factor+age_factor+race_factor+priors_count+crime_facto
+r+two_year_recidscore_factor∼gender_factor+age_factor+race_factor+priors_c
+ount+crime_factor+two_year_recid
+ Description: Logistic regression is utilized to predict the likelihood of high
+COMPAS scores based on various predictor variables.
+ Algorithm: Maximum likelihood estimation is employed to estimate the
+coefficients.
+Cox Proportional Hazards Model:
+ Model:
+Surv(start, end, event, type = "counting")∼score_factor+race_factor+score_facto
+r×race_factorSurv(start, end, event, type = "counting")∼score_factor+race_facto
+r+score_factor×race_factor
+ Description: Cox proportional hazards model is applied to study the time until
+recidivism, considering both the score factor and race factor.
+ Algorithm: Partial likelihood estimation is used to estimate hazard ratios.
+Methodology:
+Data Preprocessing:
+ Filtering the dataset to remove irrelevant entries.
+ Transforming categorical variables into factors.
+ Calculating the length of stay in jail.
+Descriptive Statistics:
+ Calculating summary statistics for key variables (e.g., age, race, score text).
+Bias Assessment:
+ Investigating potential biases in the COMPAS scores based on race, gender, and
+other factors.
+Logistic Regression:
+ Fitting logistic regression models to predict the likelihood of high COMPAS
+scores.
+Survival Analysis:
+ Applying Cox proportional hazards models to study survival probabilities
+considering recidivism.
+Theory:
+The analysis builds upon existing literature that highlights concerns about fairness and bias in
+the criminal justice system, particularly in predictive algorithms. Previous studies have
+discussed challenges related to the disparate impact of these algorithms on different
+demographic groups.
+Empirical Studies:
+Analysis
+The COMPAS scores for "Risk of Violent Recidivism" and "Risk of Recidivism" were examined.
+The COMPAS score for "Risk of Failure to Appear" was not examined by us.
+We started by examining the recidivism risk score. The basic distribution of the COMPAS decile
+scores between whites and blacks was the focus of our initial investigation. For 6,172 prisoners
+who had not been arrested for a new offense or who had recidivated within the previous two
+years, we plotted the distribution of these scores.
+Figure 1 Bar Graph Depicting Black and White Defendant’s Decile Scores
+These histograms demonstrate how black defendants' scores were similarly distributed
+throughout, but white defendants' scores were biased toward lower-risk groups. There were
+1,175 female defendants and 4,997 male defendants in our two-year sample, comprising 3,175
+black defendants and 2,103 white defendants. In this sample, 2,809 defendants experienced
+recidivism during a two-year period.
+CompAS's violent risk score histograms also reveal a discrepancy in the distribution of scores
+between defendants who are white and those who are black. The sample size that we utilized
+to assess COMPAS's violent recidivism score was 4,020 defendants, 1,918 black defendants, and
+1,459 white defendants; this sample size was slightly smaller than that of the general recidivism
+score. 652 violent recidivists were identified.
+Figure 2 Bar Graph Depicting Black and White Defendant’s Violent Decile Scores
+While there is a clear difference between the distributions of COMPAS scores for white and
+black defendants, merely looking at the distributions does not account for other demographic
+and behavioral factors.
+To test racial disparities in the score controlling for other factors, we created a logistic
+regression model that considered race, age, criminal history, future recidivism, charge degree,
+gender and age.
+Figure 3 Table Depicting Logistic Regression Model for General Recidivism
+To model the likelihood of receiving a higher COMPAS score, we considered those factors. We
+regarded scores greater than "low" to indicate a risk of recidivism since according to COMPAS,
+"scores in the medium and high range garner more interest from supervision agencies than low
+scores, as a low score would suggest there is little risk of general recidivism.
+According to our logistic model, age was the most reliable indicator of a higher risk score. Even
+after accounting for past criminal history, potential for future crime, gender, and race,
+defendants under 25 had a 2.5-fold increased chance of receiving a higher score than middle-
+aged offenders.
+Additionally, race was a strong predictor of higher scores. Black defendants were 45 percent
+more likely than White defendants to receive a higher score after accounting for other criteria
+including their higher overall recidivism rates.
+Remarkably, after adjusting for the same variables, female offenders were 19.4% more likely
+than male defendants to receive a better score, despite their lower overall levels of criminality.
+Figure 4 Table Depicting Logistic Regression Model for Violent Recidivism
+Additionally, there is a risk of violent recidivism score in the COMPAS software. We examined
+4,020 individuals who had their violent recidivism scores calculated during a two-year period
+(excluding time spent in jail or prison). For these scores, we used a similar regression model.
+An even greater predictor of a higher violent recidivism score was age. After adjusting for past
+criminal history, gender, race, and future violent recidivism, our regression analysis revealed
+that youthful defendants had a 6.4-fold higher chance of receiving a higher score than middle-
+aged defendants.
+Additionally, a higher score for violent recidivism was predicted by race. After accounting for
+past criminal histories and potential violent recidivism, black defendants had a 77.3 percent
+higher chance of receiving a higher score than white defendants.
+We used the data to design a Cox proportional hazards model in order to assess the overall
+prediction accuracy of COMPAS. We can compare recidivism rates while adjusting for time
+using a Cox model. Because we aren’t controlling for other factors such as a defendant’s
+criminality, we can include more people in this Cox model. 10,314 defendants (3,569 white
+defendants and 5,147 black defendants) made up our sample size for this analysis.
+Figure 5 Table depicting Cox Model for General Recidivism
+People in our data set were deemed to be "at risk" on the day they received their COMPAS
+score, April 1, 2016, or until they committed a new violation, whichever happened first. We
+took them off the danger that was placed on them while they were in prison. The COMPAS
+categorical risk score served as the independent variable in the Cox model.
+According to the Cox model, the likelihood of recidivating was shown to be 3.5 times higher for
+those with high scores than for those with low scores (scores 1 to 4). According to a research,
+those who scored highly (scores 8 to 10) had a 5.6-fold increased risk of recidivating. The
+predictive value of the score is indicated by both findings.
+A survival plot also shows a clear difference in recidivism rates between each COMPAS score
+level.
+Figure 6 Survival Plot for difference in recidivism rates between different COMPAS score level
+The concordance score of the Cox regression was 63.6 percent overall. This indicates that 63.6
+percent of the time, the COMPAS algorithm can correctly assess the recidivism risk of any
+randomly chosen pair of defendants in the sample (for example, if one of the pair recidivates,
+the pair will be considered successful if the other member of the pair also had a better score).
+Using the underlying risk scores, which are ranked from 1 to 10, instead of the low, middle, and
+high ranges when running the Cox model produced a slightly higher concordance of 66.4
+percent.
+The concordance of the COMPAS violent recidivism score was 65.1%.
+The COMPAS methodology predicts recidivism differently for men and women. Based on
+approximations, women who were classified as high risk experienced a 47.5% recidivism rate in
+the two years after their assessment. However, throughout the same period, men who were
+classified as high risk divorced at a significantly higher incidence of 61.2 percent. Law
+enforcement officers reading the score may fail to see that a high-risk woman has a significantly
+lower chance of recidivating than a high-risk man.
+Figure 7 Survival Plot for difference in recidivism rates between different genders
+In our research, the COMPAS recidivism score's predictive accuracy for defendants of different
+races was found to be similar: 62.5 percent for white defendants and 62.3 percent for black
+defendants.
+Across every risk category, black defendants recidivated at higher rates.
+Figure 8 Survival Plot for General recidivism rates between different races
+Figure 9 Table depicting General Recidivism Cox Model
+To the Cox model, we additionally included a race-by-score interaction variable. This period
+gave us the opportunity to investigate whether there were differences in recidivism between
+defendants who scored highly and those who scored poorly for Black and White defendants.
+Black defendants' high scores have a coefficient that is nearly statistically significant (0.0574).
+Whereas high-risk black defendants are only 2.99 times more likely to recidivate than low-risk
+black defendants, high-risk white defendants are 3.61 times more likely to do so. There are
+racial differences in the hazard ratios for medium-risk versus low-risk defendants: 1.95 for black
+defendants and 2.32 for white defendants. We can infer that the score is performing differently
+across ethnic categories based on the difference in hazard ratios.
+We examined COMPAS's violent recidivism score in a similar manner, but the results were not
+comparable. The interaction term between race and score in this case was not significant,
+indicating that there is no discernible difference between the risks associated with high- and
+low-risk Black defendants and high- and low-risk White defendants.
+Overall, violent recidivists make up a far smaller percentage of recidivists than general
+recidivists, and the risk rates for black and white recidivists are similar across all score levels.
+Figure 10 Survival Plot for Violent recidivism rates between different races
+Summary of Major Findings:
+The analysis of COMPAS scores for recidivism and violent recidivism indicates significant
+disparities in score distribution between white and black defendants. Logistic regression models
+reveal age and race as strong predictors, with younger and black defendants more likely to
+receive higher scores. The Cox Proportional Hazards Model demonstrates that high COMPAS
+scores correlate with a 3.5 times higher likelihood of recidivism. However, the concordance
+score of 63.6% falls below the industry's reliability threshold. Gender disparities show that high-
+risk men recidivate more than high-risk women. While black defendants recidivate at higher
+rates, the COMPAS predictive accuracy remains consistent between white and black
+defendants. The race-by-score interaction term suggests differential performance among racial
+subgroups.
+Criticism and Limitations:
+Limitations include the study's acknowledgment that score distributions may not fully account
+for demographic and behavioral factors. Despite predictive value, the concordance scores are
+below industry standards. The study identifies disparities in how the COMPAS system predicts
+recidivism across racial and gender subgroups, raising concerns about law enforcement's
+interpretation. The report underscores variations in the performance of the COMPAS system
+among racial subgroups, challenging its uniform effectiveness.
+References
+Julia Angwin, Jeff Larson, Surya Mattu, and Lauren Kirchner. Machine bias:There’s
+software used across the country to predict future criminals. and it’s biased against
+blacks. 2016. URL https://www.propublica.org/article/how-we--analyzed-the-compas-
+recidivism-algorithm
+Shamena Anwar and Hanming Fang. Testing for racial prejudice in the parole board
+release process: Theory and evidence. Technical report, National Bureau of Economic
+Research, 2012.
+Administrative Office of the United States Courts. An overview of the federal post-
+conviction risk assessment, September 2011.
+Anthony W Flores, Kristin Bechtel, and Christopher T Lowenkamp. False positives, false
+negatives, and false analyses: A rejoin- der to “machine bias: There’s software used
+across the country to predict future criminals. and it’s biased against blacks.”.
+Unpublished manuscript, 2016.
+Jay P Singh. Predictive validity performance indicators in violence risk assessment: A
+methodological primer Behavioral Sciences & the Law,31(1):8–22, 2013.
